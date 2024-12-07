@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- Character encoding -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive design -->
+    <title>Moira Charie E. Chu - Portfolio</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f0f0f5; 
+            color: #333; 
+            padding: 0 10px;
+            scroll-behavior: smooth; /* Smooth scrolling */
+        }
+
+        header {
+            background: linear-gradient(135deg, #ff6b6b, #ffcccb);
+            color: #fff;
+            padding: 40px 20px; 
+            text-align: center;
+            border-bottom: 5px solid #ffcccb; 
+        }
+
+        h1 {
+            font-size: 3.5em; /* Larger size for header */
+            margin: 0;
+            animation: bounce 1s infinite; /* Apply bounce animation */
+        }
+
+        p {
+            font-size: 1.2em; 
+            margin: 10px 0; 
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0); /* Original position */
+            }
+            40% {
+                transform: translateY(-30px); /* Upward movement */
+            }
+            60% {
+                transform: translateY(-15px); /* Downward movement */
+            }
+        }
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 0; /* Increased padding for aesthetics */
+            position: sticky; /* Sticky navigation */
+            top: 0; /* Stay at the top */
+            z-index: 1000; /* Ensure it's on top of other elements */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Shadow for depth */
+        }
+        .navbar-container {
+            max-width: 1200px; /* Center content */
+            margin: auto; 
+            display: flex; 
+            justify-content: center; /* Centering the navbar */
+        }
+        .navbar-menu {
+            list-style: none; 
+            display: flex; 
+        }
+        .navbar-item {
+            margin: 0 15px; 
+        }
+        .navbar-link {
+            color: #fff; 
+            text-decoration: none; 
+            padding: 8px 15px; 
+            transition: background-color 0.3s ease, color 0.3s ease; 
+            border-radius: 5px; 
+        }
+        .navbar-link:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent on hover */
+            color: #ffcccb; /* Change color on hover */
+        }
+
+        section {
+            padding: 40px;
+            margin: 20px auto;
+            max-width: 850px;
+            background: #fff; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
+        }
+
+        h2 {
+            color: #ff6b6b; 
+            border-bottom: 2px solid #ffcccb; 
+            padding-bottom: 10px; 
+            font-size: 2em; /* Slightly larger for section headers */
+        }
+
+        .projects {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between; /* Space out projects for better layout */
+        }
+
+        .project {
+            flex: 1 1 calc(33% - 15px); /* Responsive project cards */
+            margin: 10px;
+            padding: 20px; 
+            background: #eaeaea; 
+            border-radius: 10px; 
+            transition: transform 0.3s, box-shadow 0.3s; 
+            position: relative; /* For pseudo-element */
+            overflow: hidden; /* Contain floating elements */
+            cursor: pointer; /* Show pointer cursor */
+        }
+
+        .project:hover {
+            transform: translateY(-5px); 
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); 
+        }
+
+        .project img {
+            border-radius: 8px; 
+            max-width: 100%; /* Responsive images */
+            transition: transform 0.3s; /* Smooth scaling */
+        }
+
+        .project img:hover {
+            transform: scale(1.05); /* Slightly increase size on hover */
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: #fff;
+        }
+
+        a {
+            color: #ff6b6b; 
+            text-decoration: none; 
+        }
+
+        a:hover {
+            text-decoration: underline; 
+        }
+
+        /* About Me Image Styles */
+        .about-container {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        
+        }
+
+        .about-container img:hover {
+            transform: scale(1.1); /* Slight enlarge on hover */
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar-menu {
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: #333;
+                display: none; /* Hide menu by default */
+            }
+
+            .navbar-item {
+                margin: 10px 0;
+                text-align: center;
+            }
+
+            .navbar-container.active .navbar-menu {
+                display: flex; /* Show menu when active */
+            }
+
+            .navbar-toggle {
+                display: block; /* Show hamburger icon */
+            }
+
+            .project {
+                flex: 1 1 100%; /* Full width on small screens */
+            }
+
+            .about-container {
+                flex-direction: column; /* Stack image over text on small screens */
+                align-items: center; /* Center align */
+            }
+        }
+
+        /* Fade In Animation for h1 and p */
+        h1 {
+            opacity: 0; /* Start hidden */
+            transform: translateX(-100%); /* Start from left */
+            animation: fadeInRight 2s forwards; /* Apply fade-in animation */
+        }
+
+        p span {
+            opacity: 0; /* Start hidden */
+            animation: fadeInUp 2s forwards; /* Apply fade-in up animation */
+            animation-delay: 1s; /* Delay to start fade-in after h1 */
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0; /* Start fully transparent */
+                transform: translateX(-100%); /* Move to the left */
+            }
+            to {
+                opacity: 1; /* Fully visible */
+                transform: translateX(0); /* End position */
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0; /* Start fully transparent */
+                transform: translateY(20px); /* Start slightly below */
+            }
+            to {
+                opacity: 1; /* Fully visible */
+                transform: translateY(0); /* End position */
+            }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+            padding: 20px;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        .close {
+            color: #fff;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #ffcccb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to My Website</h1>
+    <nav>
+        <a href="#Moira Chu">Moira Chu</a>
+    </nav>
+</header>
+
+<nav class="navbar">
+    <div class="navbar-container">
+        <ul class="navbar-menu">
+          <li class="navbar-item"><a href="#about" class="navbar-link">About</a></li>
+          <li class="navbar-item"><a href="#projects" class="navbar-link">Projects</a></li>
+          <li class="navbar-item"><a href="#contact" class="navbar-link">Contact</a></li>
+      </ul>
+    </div>
+</nav>
+
+<section id="about">
+    <div class="about-container">
+        <div>
+            <div class="projects">
+                <div class="project" onclick="openModal('Picture M1.jpg')">
+                    <div class="picture-frame">
+                        <img src="Picture M1.jpg" alt="Picture M1">
+                    </div>
+                </div>
+                <div class="project" onclick="openModal('Picture M2.jpg')">
+                    <div class="picture-frame">
+                        <img src="Picture M2.jpg" alt="Picture M2">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="about">
+    <h2>About Me</h2>
+    <div class="about-container">
+        <div>
+            <p>Hello! I'm Moira, a passionate developer with skills in web development and design.</p>
+            <p>I enjoy creating aesthetically pleasing and user-friendly websites. In my spare time, I love to learn new technologies and improve my skills.</p>
+        </div>
+    </div>
+</section>
+
+<section id="projects">
+    <h2>My Projects</h2>
+    <div class="projects">
+        <div class="project" onclick="openModal('Picture M1.jpg')"> <!-- Example image -->
+            <img src="Payroll.jpg" alt="Payroll System Image">
+            <h3>Payroll System</h3>
+            <p>A web-based application to manage employee payroll processes efficiently.</p>
+            <a href="https://uc-bcf.instructure.com/courses/40580/assignments/580349/submissions/57912" class="download-btn" download>Download</a>
+        </div>
+        <div class="project" onclick="openModal('retail_inventory.jpg')">
+            <img src="Retail.jpg" alt="Retail Store Inventory Image">
+            <h3>Retail Store Inventory System</h3>
+            <p>This system helps manage inventory for retail stores, enabling real-time updates and tracking.</p>
+            <a href="https://uc-bcf.instructure.com/courses/40580/assignments/584557/submissions/57912" class="download-btn" download>Download</a>
+        </div>
+        <div class="project" onclick="openModal('project_title_3.jpg')">
+            <img src="Course.jpg" alt="Course Enrollment and Grade Tracker System Image">
+            <h3>Course Enrollment and Grade Tracker System</h3>
+            <p>Details about this project can be elaborated here.</p>
+            <a href="https://uc-bcf.instructure.com/courses/40580/assignments/584557/submissions/57912" class="download-btn" download>Download</a>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Contact Me</h2>
+    <p>If you'd like to get in touch, feel free to reach out!</p>
+    <input type="text" id="name" placeholder="Your Name" />
+    <input type="email" id="email" placeholder="Your Email" />
+    <button onclick="sendMessage()">Send Message</button>
+        <li>Email: <a href="mailto:chumoiwaaa@gmail.com">chumoiwaaa@gmail.com</a></li>
+        <li>Instagram: <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">Charie_chu</a></li>
+        <li>Facebook: <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Chu Moira</a></li>
+    </ul>
+</section>
+
+<footer>
+    <p>© Moira Charie E. Chu</p> <!-- Footer content -->
+</footer>
+
+<!-- Modal for Project Images -->
+<div id="myModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="img01">
+</div>
+
+<script>
+    function openModal(imageSrc) {
+        const modal = document.getElementById("myModal");
+        const modalImg = document.getElementById("img01");
+        modal.style.display = "block";
+        modalImg.src = imageSrc;
+    }
+
+    function closeModal() {
+        const modal = document.getElementById("myModal");
+        modal.style.display = "none";
+    }
+
+    // Add scrolling effect to highlight navbar
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".navbar-link");
+
+    window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+
+            if (scrollY >= sectionTop - sectionHeight / 3) {
+                current = section.getAttribute("id");
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove("active"); // Remove active class from all links
+            if (link.getAttribute("href") === `#${current}`) {
+                link.classList.add("active"); // Add active class to the current link
+            }
+        });
+    });
+</script>
+</body>
+</html>
